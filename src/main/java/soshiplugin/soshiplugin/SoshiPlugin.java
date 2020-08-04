@@ -19,7 +19,8 @@ public final class SoshiPlugin extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         // test command
-        if(cmd.getName().equalsIgnoreCase("test")){
+        String cmd_name = cmd.getName();
+        if(cmd_name.equalsIgnoreCase("test")){
             getLogger().info("test command");
         }
         // not found
