@@ -1,5 +1,5 @@
 name: SoshiPlugin
-version: 1.1-SNAPSHOT
+version: 1.2-SNAPSHOT
 main: soshiplugin.soshiplugin.SoshiPlugin
 api-version: 1.15
 
