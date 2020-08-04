@@ -1,6 +1,0 @@
-
-commands:
-    basic: test
-        description: This is a demo command.
-        permission: soshi.test
-        permission-message: You don't have permission
