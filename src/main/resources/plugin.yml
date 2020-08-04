@@ -1,0 +1,4 @@
+name: Soshi'sPlugin
+version: @version@
+main: soshiplugin.soshiplugin.SoshiPlugin
+api-version: 1.15
