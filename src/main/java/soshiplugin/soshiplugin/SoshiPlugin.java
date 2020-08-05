@@ -1,8 +1,6 @@
 package soshiplugin.soshiplugin;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -52,5 +50,7 @@ public final class SoshiPlugin extends JavaPlugin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer(); // Joinしたプレイヤー
         player.sendMessage(ChatColor.GOLD + "よく来たな!このとんでもない成金め!!");
+        Location loc = event.getPlayer().getLocation();
+        loc.getWorld().playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE,1f,-0.1f);
     }
 }
