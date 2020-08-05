@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import soshiplugin.soshiplugin.commands.S_tpCommand;
 import soshiplugin.soshiplugin.commands.TestCommand;
 import soshiplugin.soshiplugin.events.Bed;
 import soshiplugin.soshiplugin.events.Login;
@@ -21,6 +22,7 @@ public class SoshiPlugin extends JavaPlugin  {
         getServer().getPluginManager().registerEvents(new Bed(), this);
         getServer().getPluginManager().registerEvents(new Login(), this);
         getCommand("test").setExecutor(new TestCommand());
+        getCommand("stp").setExecutor(new S_tpCommand());
     }
 
     @Override
