@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
-import static org.bukkit.Bukkit.getPlayer;
+import static org.bukkit.Bukkit.*;
 
 public class S_tpCommand implements CommandExecutor {
 
@@ -33,6 +33,7 @@ public class S_tpCommand implements CommandExecutor {
                 return false;
             }
             Objects.requireNonNull(player).teleport(tp_location);
+            broadcastMessage(player.getName() + "が" + args[0] + "にテレポートした。");
         }
         // not found
         return false;
