@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
@@ -38,8 +39,9 @@ public class S_tpCommand implements CommandExecutor {
         return Objects.requireNonNull(player).getInventory();
     }
 
-    private void remove_Iron_hoe(Inventory player_Inventory) {
-        player_Inventory.remove(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
+    private static void remove_Iron_hoe(Inventory player_Inventory) {
+        ItemStack Iron_Hoe = new ItemStack(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
+        player_Inventory.removeItem(Iron_Hoe);
     }
 
     private boolean isIron_hoe(Inventory player_Inventory) {
