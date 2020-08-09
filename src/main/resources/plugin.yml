@@ -1,4 +1,10 @@
-name: Soshi'sPlugin
-version: @version@
+name: SoshiPlugin
+version: 1.2-SNAPSHOT
 main: soshiplugin.soshiplugin.SoshiPlugin
 api-version: 1.15
+
+commands:
+  test:
+    description: This is a demo command.
+  stp:
+    description: This is a tp command.
