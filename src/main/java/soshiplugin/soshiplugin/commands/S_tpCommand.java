@@ -53,9 +53,5 @@ public class S_tpCommand implements CommandExecutor {
         ItemStack Iron_Hoe = new ItemStack(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
         player_Inventory.removeItem(Iron_Hoe);
     }
-
-    private boolean isIron_hoe(Inventory player_Inventory) {
-        return player_Inventory.contains(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
-    }
 }
 
