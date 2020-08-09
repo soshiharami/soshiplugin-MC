@@ -8,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.Objects;
+
 import static org.bukkit.Bukkit.getPlayer;
 
 public class S_tpCommand implements CommandExecutor {
@@ -17,11 +19,11 @@ public class S_tpCommand implements CommandExecutor {
         String cmd_name = cmd.getName();
         // test command
         if(cmd_name.equalsIgnoreCase("stp")){
-            Location tp_location = getPlayer(args[0]).getLocation();
+            Location tp_location = Objects.requireNonNull(getPlayer(args[0])).getLocation();
             Player player = getPlayer(sender.getName());
-            Inventory player_Inventory =  player.getInventory();
-            if (player_Inventory.contains(Material.getMaterial("IRON_HOE"))){
-                player_Inventory.remove(Material.getMaterial("IRON_HOE"));
+            Inventory player_Inventory = getItemStacks(player);
+            if (isIron_hoe(player_Inventory)){
+                remove_Iron_hoe(player_Inventory);
             }else{
                 player.sendMessage("鉄のクワがないよ");
                 return false;
@@ -30,6 +32,18 @@ public class S_tpCommand implements CommandExecutor {
         }
         // not found
         return false;
+    }
+
+    private Inventory getItemStacks(Player player) {
+        return Objects.requireNonNull(player).getInventory();
+    }
+
+    private void remove_Iron_hoe(Inventory player_Inventory) {
+        player_Inventory.remove(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
+    }
+
+    private boolean isIron_hoe(Inventory player_Inventory) {
+        return player_Inventory.contains(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
     }
 }
 
