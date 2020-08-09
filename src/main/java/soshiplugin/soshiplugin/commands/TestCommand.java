@@ -3,8 +3,6 @@ package soshiplugin.soshiplugin.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import static org.bukkit.Bukkit.getLogger;
 
 public class TestCommand implements CommandExecutor {
