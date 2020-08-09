@@ -25,10 +25,10 @@ public class S_tpCommand implements CommandExecutor {
             if (isIron_hoe(player_Inventory)){
                 remove_Iron_hoe(player_Inventory);
             }else{
-                player.sendMessage("鉄のクワがないよ");
+                Objects.requireNonNull(player).sendMessage("鉄のクワがないよ");
                 return false;
             }
-            player.teleport(tp_location);
+            Objects.requireNonNull(player).teleport(tp_location);
         }
         // not found
         return false;
