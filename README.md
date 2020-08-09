@@ -1,11 +1,12 @@
-This is a minecraft plugin for my server.<Br>
-Basically, we're adding functions that will be useful as we play in our friend.
+This is a plugin of Minecraft for my server.<Br>
+Basically, we're adding functions that is useful when we play with our friends.
 
 # Function List
-#### Command
-`/stp` : Spend the iron hoe in your inventory to tp the player.<Br>
-``/stp [player naem]``
+#### Commands
+`/stp` : Tp the player using iron hoe in your inventory.
+``/stp [player name]``
 
-#### event
- <Li>Send a message when you log in.</LI>
- <Li>Morning comes when someone is sleep in bed.</Li>
+#### Events
+ - Send a message when you log in.</LI>
+ - Morning comes when someone is in a bed.</Li>
+ 
