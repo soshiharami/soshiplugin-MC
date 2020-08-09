@@ -1,5 +1,11 @@
-自鯖のマイクラプラグインです。
-基本身内で遊ぶので便利になる機能を追加しています。
+This is a minecraft plugin for my server.<Br>
+Basically, we're adding functions that will be useful as we play in our friend.
 
-## 機能一覧
-NULL
+# Function List
+#### Command
+`/stp` : Spend the iron hoe in your inventory to tp the player.<Br>
+``/stp [player naem]``
+
+#### event
+ <Li>Send a message when you log in.</LI>
+ <Li>Morning comes when someone is sleep in bed.</Li>
