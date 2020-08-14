@@ -11,7 +11,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 public class GetExp implements Listener {
 
     @EventHandler
-    public void break_block(BlockBreakEvent event){
+    public void Break_Block(BlockBreakEvent event){
         Player player = event.getPlayer();
         if (event.isDropItems()) { //アイテムをドロップしたら
             player.giveExp(1);
