@@ -1,5 +1,8 @@
 package soshiplugin.soshiplugin.commands;
 
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,12 +19,26 @@ import static org.bukkit.Bukkit.getPlayer;
 
 public class xptrade implements CommandExecutor, Listener {
 
-    public static Inventory trade_item_inv_open = null;
+    private static Inventory trade_item_inv_open = null;
+    private static Player trade_partner = null;
+    private static Player trade_player = null;
+    private static float trade_xp = 0;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+        if (args[0].equals("open")){
+            trade_partner.openInventory(trade_item_inv_open);
+        }
         String cmd_name = cmd.getName();
         Player player = getPlayer(sender.getName());
+        trade_player = player;
+        trade_partner = getPlayer(args[0]);
+        trade_xp = Float.parseFloat(args[1]);
+        if (trade_partner.getExp() <= trade_xp){
+            assert player != null;
+            player.sendMessage("This player don't have " + args[1] + " xps");
+            return false;
+        }
         // test command
         if(cmd_name.equalsIgnoreCase("xptrade")){
             Inventory trade_item_inv = Bukkit.createInventory(null, 9, "trade item inv");
