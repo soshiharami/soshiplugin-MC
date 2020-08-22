@@ -19,10 +19,11 @@ import static org.bukkit.Bukkit.getPlayer;
 
 public class xptrade implements CommandExecutor, Listener {
 
-    private static Inventory trade_item_inv_open = Bukkit.createInventory(null, 9, "trade item inv");
+    private static Inventory trade_item_inv_open = null;
     private static Player trade_partner = null;
     private static Player trade_player = null;
     private static int trade_xp = 0;
+    public static boolean is_second = true;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
@@ -30,6 +31,7 @@ public class xptrade implements CommandExecutor, Listener {
             trade_partner.openInventory(trade_item_inv_open);
             return false;
         }
+        is_second = false;
         String cmd_name = cmd.getName();
         Player player = getPlayer(sender.getName());
         trade_player = player;
@@ -52,7 +54,7 @@ public class xptrade implements CommandExecutor, Listener {
 
     @EventHandler
     public void close_inv(InventoryCloseEvent event){
-        if(trade_item_inv_open != event.getInventory()) return;
+        if(trade_item_inv_open != event.getInventory() | is_second) return;
         trade_partner.sendMessage(trade_player.getName() + "から" + trade_xp + "のトレードが来ています");
         StringBuilder Item = new StringBuilder();
         for (ItemStack item: trade_item_inv_open.getContents()){
@@ -63,7 +65,8 @@ public class xptrade implements CommandExecutor, Listener {
         trade_player.sendMessage(Item.toString());
         TextComponent message = new TextComponent( "Click me" );
         message.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/xptrade open 0" ) );
+        is_second = true;
         trade_player.spigot().sendMessage(message);
-        trade_partner.setTotalExperience(trade_partner.getTotalExperience() - trade_xp);
+        trade_partner.setExp(trade_partner.getExp() - trade_xp);
     }
 }
