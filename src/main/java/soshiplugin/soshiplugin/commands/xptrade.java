@@ -39,4 +39,13 @@ public class xptrade implements CommandExecutor, Listener {
         String item = Objects.requireNonNull(event.getInventory().getItem(0)).toString();
         event.getPlayer().sendMessage(item);
     }
+
+    public static void sendClickText(Player p,String text,String command){
+        ClickEvent clickEvent = null;
+        if(command != null){
+            clickEvent = new ClickEvent(ClickEvent.Action.RUN_COMMAND,command);
+        }
+        BaseComponent[] message = new ComponentBuilder(text).event(clickEvent). create();
+        p.spigot().sendMessage(message);
+    }
 }
