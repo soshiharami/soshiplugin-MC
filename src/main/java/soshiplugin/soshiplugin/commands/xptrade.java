@@ -22,7 +22,7 @@ public class xptrade implements CommandExecutor, Listener {
     private static Inventory trade_item_inv_open = Bukkit.createInventory(null, 9, "trade item inv");
     private static Player trade_partner = null;
     private static Player trade_player = null;
-    private static float trade_xp = 0;
+    private static int trade_xp = 0;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
@@ -34,9 +34,9 @@ public class xptrade implements CommandExecutor, Listener {
         Player player = getPlayer(sender.getName());
         trade_player = player;
         trade_partner = getPlayer(args[0]);
-        trade_xp = Float.parseFloat(args[1]);
+        trade_xp = Integer.parseInt(args[1]);
         Objects.requireNonNull(player).sendMessage(String.valueOf(trade_player.getExp()));
-        if (trade_partner.getLevel() + trade_partner.getExp() <= trade_xp){
+        if (trade_partner.getTotalExperience() <= trade_xp){
             player.sendMessage("This player don't have " + args[1] + " xps");
             return false;
         }
@@ -64,5 +64,6 @@ public class xptrade implements CommandExecutor, Listener {
         TextComponent message = new TextComponent( "Click me" );
         message.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/xptrade open 0" ) );
         trade_player.spigot().sendMessage(message);
+        trade_partner.setTotalExperience(trade_partner.getTotalExperience() - trade_xp);
     }
 }
