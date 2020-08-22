@@ -29,6 +29,7 @@ public class xptrade implements CommandExecutor, Listener {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         if (args[0].equals("open")){
             trade_partner.openInventory(trade_item_inv_open);
+            trade_partner.setExp(trade_partner.getExp() - trade_xp);
             return false;
         }
         is_second = false;
@@ -67,6 +68,5 @@ public class xptrade implements CommandExecutor, Listener {
         message.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/xptrade open 0" ) );
         is_second = true;
         trade_player.spigot().sendMessage(message);
-        trade_partner.setExp(trade_partner.getExp() - trade_xp);
     }
 }
