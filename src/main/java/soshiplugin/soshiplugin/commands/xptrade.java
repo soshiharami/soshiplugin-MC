@@ -26,6 +26,7 @@ public class xptrade implements CommandExecutor, Listener {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         if (args[0].equals("open")){
             trade_partner.openInventory(trade_item_inv_open);
+            return false;
         }
         String cmd_name = cmd.getName();
         Player player = getPlayer(sender.getName());
