@@ -58,7 +58,7 @@ public class xptrade implements CommandExecutor, Listener {
         StringBuilder Item = new StringBuilder();
         for (ItemStack item: trade_item_inv_open.getContents()){
             if (item == null) continue;
-            Item.append(item.getItemMeta().getDisplayName()).append("  × ").append(item.getAmount()).append("\n");
+            Item.append(Objects.requireNonNull(item.getItemMeta()).getDisplayName()).append("  × ").append(item.getAmount()).append("\n");
             //APIのバグで名前が出ません
         }
         trade_player.sendMessage(Item.toString());
