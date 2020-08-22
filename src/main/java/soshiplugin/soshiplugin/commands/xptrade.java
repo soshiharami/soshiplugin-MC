@@ -13,8 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
-import java.util.Objects;
-
 import static org.bukkit.Bukkit.getPlayer;
 
 public class xptrade implements CommandExecutor, Listener {
@@ -53,8 +51,8 @@ public class xptrade implements CommandExecutor, Listener {
     @EventHandler
     public void close_inv(InventoryCloseEvent event){
         if(trade_item_inv_open != event.getInventory()) return;
-        String item = Objects.requireNonNull(event.getInventory().getItem(0)).toString();
-        event.getPlayer().sendMessage(item);
+        trade_partner.sendMessage(trade_player.getName() + "から" + trade_xp + "のトレードが来ています");
+        sendClickText(trade_player,"受けるならここをクリック","/xptrade open");
     }
 
     public static void sendClickText(Player p,String text,String command){
