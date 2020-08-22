@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
-import static org.bukkit.Bukkit.broadcastMessage;
 import static org.bukkit.Bukkit.getPlayer;
 
 public class xptrade implements CommandExecutor, Listener {
