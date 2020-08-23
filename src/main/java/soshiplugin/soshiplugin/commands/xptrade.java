@@ -29,7 +29,7 @@ public class xptrade implements CommandExecutor, Listener {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         if (args[0].equals("open")){
             trade_partner.openInventory(trade_item_inv_open);
-            trade_partner.setExp(trade_partner.getExp() - trade_xp);
+            trade_partner.giveExp(trade_xp * -1);
             return false;
         }
         is_second = false;
@@ -38,7 +38,7 @@ public class xptrade implements CommandExecutor, Listener {
         trade_player = player;
         trade_partner = getPlayer(args[0]);
         trade_xp = Integer.parseInt(args[1]);
-        Objects.requireNonNull(player).sendMessage(String.valueOf(trade_player.getExp()));
+        Objects.requireNonNull(player).sendMessage(String.valueOf(trade_player.getTotalExperience()));
         if (trade_partner.getTotalExperience() <= trade_xp){
             player.sendMessage("This player don't have " + args[1] + " xps");
             return false;
