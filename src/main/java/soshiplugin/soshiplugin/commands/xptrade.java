@@ -30,6 +30,7 @@ public class xptrade implements CommandExecutor, Listener {
         if (args[0].equals("open")){
             trade_partner.openInventory(trade_item_inv_open);
             trade_partner.giveExp(trade_xp * -1);
+            trade_player.giveExp(trade_xp);
             return false;
         }
         is_second = false;
