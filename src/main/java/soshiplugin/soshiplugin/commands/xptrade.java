@@ -38,16 +38,15 @@ public class xptrade implements CommandExecutor, Listener {
         trade_player = player;
         trade_partner = getPlayer(args[0]);
         trade_xp = Integer.parseInt(args[1]);
-        Objects.requireNonNull(player).sendMessage(String.valueOf(trade_player.getTotalExperience()));
-        if (trade_partner.getTotalExperience() <= trade_xp){
-            player.sendMessage("This player don't have " + args[1] + " xps");
+        if (trade_partner.getTotalExperience() < trade_xp){
+            Objects.requireNonNull(player).sendMessage("This player don't have " + args[1] + " xps");
             return false;
         }
         // test command
         if(cmd_name.equalsIgnoreCase("xptrade")){
             Inventory trade_item_inv = Bukkit.createInventory(null, 9, "trade item inv");
             trade_item_inv_open = trade_item_inv;
-            player.openInventory(trade_item_inv);
+            Objects.requireNonNull(player).openInventory(trade_item_inv);
         }
         // not found
         return false;
