@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import static org.bukkit.Bukkit.*;
 
-public class S_tpCommand implements CommandExecutor {
+public class stpCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){

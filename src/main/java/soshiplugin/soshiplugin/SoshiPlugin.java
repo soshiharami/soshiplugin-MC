@@ -1,7 +1,7 @@
 package soshiplugin.soshiplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import soshiplugin.soshiplugin.commands.S_tpCommand;
+import soshiplugin.soshiplugin.commands.stpCommand;
 import soshiplugin.soshiplugin.commands.TestCommand;
 import soshiplugin.soshiplugin.commands.xptrade;
 import soshiplugin.soshiplugin.events.Bed;
@@ -20,7 +20,7 @@ public class SoshiPlugin extends JavaPlugin  {
         getServer().getPluginManager().registerEvents(new xptrade(), this);
         Objects.requireNonNull(getCommand("test")).setExecutor(new TestCommand());
         Objects.requireNonNull(getCommand("xptrade")).setExecutor(new xptrade());
-        Objects.requireNonNull(getCommand("stp")).setExecutor(new S_tpCommand());
+        Objects.requireNonNull(getCommand("stp")).setExecutor(new stpCommand());
     }
 
     @Override
