@@ -19,15 +19,15 @@ import static org.bukkit.Bukkit.getPlayer;
 
 public class xptrade implements CommandExecutor, Listener {
 
+    public static boolean is_second = true;
     private static Inventory trade_item_inv_open = null;
     private static Player trade_partner = null;
     private static Player trade_player = null;
     private static int trade_xp = 0;
-    public static boolean is_second = true;
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-        if (args[0].equals("open")){
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (args[0].equals("open")) {
             trade_partner.openInventory(trade_item_inv_open);
             trade_partner.giveExp(trade_xp * -1);
             trade_player.giveExp(trade_xp);
@@ -39,12 +39,12 @@ public class xptrade implements CommandExecutor, Listener {
         trade_player = player;
         trade_partner = getPlayer(args[0]);
         trade_xp = Integer.parseInt(args[1]);
-        if (trade_partner.getTotalExperience() < trade_xp){
+        if (trade_partner.getTotalExperience() < trade_xp) {
             Objects.requireNonNull(player).sendMessage("This player don't have " + args[1] + " xps");
             return false;
         }
         // test command
-        if(cmd_name.equalsIgnoreCase("xptrade")){
+        if (cmd_name.equalsIgnoreCase("xptrade")) {
             Inventory trade_item_inv = Bukkit.createInventory(null, 9, "trade item inv");
             trade_item_inv_open = trade_item_inv;
             Objects.requireNonNull(player).openInventory(trade_item_inv);
@@ -54,19 +54,19 @@ public class xptrade implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void close_inv(InventoryCloseEvent event){
-        if(trade_item_inv_open != event.getInventory() | is_second) return;
+    public void close_inv(InventoryCloseEvent event) {
+        if (trade_item_inv_open != event.getInventory() | is_second) return;
         trade_partner.sendMessage(trade_player.getName() + "から" + trade_xp + "のトレードが来ています");
         StringBuilder Item = new StringBuilder();
-        for (ItemStack item: trade_item_inv_open.getContents()){
+        for (ItemStack item : trade_item_inv_open.getContents()) {
             if (item == null) continue;
             Item.append(Objects.requireNonNull(item.getItemMeta()).getDisplayName()).append("  × ").append(item.getAmount()).append("\n");
             //APIのバグで名前が出ません
         }
-        trade_player.sendMessage(Item.toString());
-        TextComponent message = new TextComponent( "Click me" );
-        message.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/xptrade open 0" ) );
+        trade_partner.sendMessage(Item.toString());
+        TextComponent message = new TextComponent("Click me");
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/xptrade open 0"));
         is_second = true;
-        trade_player.spigot().sendMessage(message);
+        trade_partner.spigot().sendMessage(message);
     }
 }
