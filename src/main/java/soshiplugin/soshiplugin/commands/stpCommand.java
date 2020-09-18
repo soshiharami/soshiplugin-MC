@@ -11,24 +11,31 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
-import static org.bukkit.Bukkit.*;
+import static org.bukkit.Bukkit.broadcastMessage;
+import static org.bukkit.Bukkit.getPlayer;
 
 public class stpCommand implements CommandExecutor {
 
+    //鉄のクワを消費させる
+    private static void remove_Iron_hoe(Inventory player_Inventory) {
+        ItemStack Iron_Hoe = new ItemStack(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
+        player_Inventory.removeItem(Iron_Hoe);
+    }
+
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         String cmd_name = cmd.getName();
         // test command
-        if(cmd_name.equalsIgnoreCase("stp")){
+        if (cmd_name.equalsIgnoreCase("stp")) {
             //tp先のLocationを取得
             Location tp_location = Objects.requireNonNull(getPlayer(args[0])).getLocation();
             //playerとplayerのinventoryを取得
             Player player = getPlayer(sender.getName());
             Inventory player_Inventory = getItemStacks(player);
 
-            if (isIron_hoe(player_Inventory)){
+            if (isIron_hoe(player_Inventory)) {
                 remove_Iron_hoe(player_Inventory);
-            }else{
+            } else {
                 Objects.requireNonNull(player).sendMessage("鉄のクワがないよ");
                 return false;
             }
@@ -47,12 +54,6 @@ public class stpCommand implements CommandExecutor {
     //鉄のクワがあるかを確認する
     private boolean isIron_hoe(Inventory player_Inventory) {
         return player_Inventory.contains(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
-    }
-
-    //鉄のクワを消費させる
-    private static void remove_Iron_hoe(Inventory player_Inventory) {
-        ItemStack Iron_Hoe = new ItemStack(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
-        player_Inventory.removeItem(Iron_Hoe);
     }
 }
 
