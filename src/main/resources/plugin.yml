@@ -8,3 +8,5 @@ commands:
     description: This is a demo command.
   stp:
     description: This is a tp command.
+  xptrade:
+    description: This is a trade used xp command.
