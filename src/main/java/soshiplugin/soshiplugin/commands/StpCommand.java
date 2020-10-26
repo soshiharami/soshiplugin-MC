@@ -14,10 +14,10 @@ import java.util.Objects;
 import static org.bukkit.Bukkit.broadcastMessage;
 import static org.bukkit.Bukkit.getPlayer;
 
-public class stpCommand implements CommandExecutor {
+public class StpCommand implements CommandExecutor {
 
     //鉄のクワを消費させる
-    private static void remove_Iron_hoe(Inventory player_Inventory) {
+    private static void Remove_Iron_Hoe(Inventory player_Inventory) {
         ItemStack Iron_Hoe = new ItemStack(Objects.requireNonNull(Material.getMaterial("IRON_HOE")));
         player_Inventory.removeItem(Iron_Hoe);
     }
@@ -34,7 +34,7 @@ public class stpCommand implements CommandExecutor {
             Inventory player_Inventory = getItemStacks(player);
 
             if (isIron_hoe(player_Inventory)) {
-                remove_Iron_hoe(player_Inventory);
+                Remove_Iron_Hoe(player_Inventory);
             } else {
                 Objects.requireNonNull(player).sendMessage("鉄のクワがないよ");
                 return false;
